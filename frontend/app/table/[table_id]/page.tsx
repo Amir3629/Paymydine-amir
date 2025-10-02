@@ -16,14 +16,14 @@ import { applyTheme } from "@/lib/theme-system"
 
 const MotionLink = motion(Link)
 
-export default function TableHomePage({ params }: { params: { table_id: string } }) {
+export default function TableHomePage({ params }: { params: Promise<{ table_id: string }> }) {
   const { t } = useLanguageStore()
   const { settings } = useCmsStore()
   const { setTableInfo } = useCartStore()
   const searchParams = useSearchParams()
   
-  // ✅ Don't use React's experimental `use(...)` here; this is a client file.
-  const pathParam = params.table_id; // <-- the path segment (e.g. "9")
+  // ✅ Use React's use() hook for async params in Next.js 15
+  const pathParam = React.use(params).table_id; // <-- the path segment (e.g. "9")
   
   const qr = searchParams.get("qr")
   const [table, setTable] = useState<any>(null)
