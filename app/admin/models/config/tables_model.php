@@ -69,7 +69,7 @@ $config['list']['columns'] = [
     ],
     'table_name' => [
         'label' => 'lang:admin::lang.label_name',
-        'type' => 'text',
+        'type' => 'hidden',
         'searchable' => true,
     ],
     'min_capacity' => [
@@ -158,18 +158,13 @@ $config['form']['fields'] = [
         'span'    => 'left',
         'comment' => 'Enter the number to appear in QR codes. Must be unique and > 0.',
     ],
-    'table_name' => [
-        'label'    => 'Table Name',
-        'type'     => 'text',
-        'span'     => 'right',
-        'disabled' => true,              // remains read-only on edit
-        'comment'  => 'Auto-set to "Table {number}" from Table Number.',
-        'context'  => ['edit'],          // <<--- this hides it on /create
-    ],
     'priority' => [
         'label' => 'lang:admin::lang.tables.label_priority',
         'type' => 'number',
         'span' => 'right',
+    ],
+    'table_name' => [
+        'type'     => 'hidden',          // Completely hidden field
     ],
     'min_capacity' => [
         'label' => 'lang:admin::lang.tables.label_min_capacity',
