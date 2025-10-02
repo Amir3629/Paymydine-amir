@@ -17,9 +17,11 @@ const nextConfig = {
   
   // Dynamic image configuration for both development and production
   images: {
-    // Use custom loader for better image URL handling
-    loader: 'custom',
-    loaderFile: './lib/image-loader.ts',
+    // TEMP: serve original URLs; bypass /_next/image for immediate fix
+    unoptimized: true,
+    // Keep patterns for later when re-enabling:
+    // loader: 'default',
+    // loaderFile: './lib/image-loader.ts',
     remotePatterns: [
       // Development patterns - Laravel backend
       {
