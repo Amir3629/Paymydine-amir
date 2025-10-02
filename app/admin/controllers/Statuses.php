@@ -49,6 +49,16 @@ class Statuses extends \Admin\Classes\AdminController
 
     protected $requiredPermissions = 'Admin.Statuses';
 
+    /**
+     * Disable checkboxes and bulk actions for read-only view
+     */
+    public function listExtendColumns($widget)
+    {
+        $widget->showCheckboxes = false;
+        $widget->bulkActions = [];
+        $widget->rowClickable = false;
+    }
+
     public function __construct()
     {
         parent::__construct();

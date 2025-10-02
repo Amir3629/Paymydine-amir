@@ -13,12 +13,33 @@ $config['list']['filter'] = [
     ],
 ];
 
+// Disable row clicking to prevent edit access
+$config['list']['rowClickable'] = false;
+
+// Hide status selection checkboxes with CSS
+$config['list']['showCheckboxes'] = false;
+$config['list']['cssClass'] = 'hide-checkboxes';
+
+// Add custom CSS to hide checkboxes
+$config['list']['customCss'] = '
+<style>
+.hide-checkboxes .list-checkbox,
+.hide-checkboxes input[type="checkbox"],
+.hide-checkboxes .checkbox-column {
+    display: none !important;
+}
+.hide-checkboxes .btn-edit {
+    display: none !important;
+}
+</style>';
+
 $config['list']['toolbar'] = [
     'buttons' => [
         'create' => [
             'label' => 'lang:admin::lang.button_new',
             'class' => 'btn btn-primary',
             'href' => 'statuses/create',
+            'style' => 'display: none;', // Hide with CSS instead of removing
         ],
     ],
 ];
@@ -28,6 +49,7 @@ $config['list']['bulkActions'] = [
         'label' => 'lang:admin::lang.button_delete',
         'class' => 'btn btn-light text-danger',
         'data-request-confirm' => 'lang:admin::lang.alert_warning_confirm',
+        'style' => 'display: none;', // Hide with CSS instead of removing
     ],
 ];
 
@@ -38,6 +60,7 @@ $config['list']['columns'] = [
         'attributes' => [
             'class' => 'btn btn-edit',
             'href' => 'statuses/edit/{status_id}',
+            'style' => 'display: none;', // Hide with CSS instead of removing
         ],
     ],
     'status_name' => [
