@@ -11,7 +11,7 @@ class NotificationsApi extends Controller
     public function count()
     {
         try {
-            $new = Notifications_model::where('is_read', 0)->count(); // adjust column if different
+            $new = Notifications_model::where('status', 'new')->count();
             return response()->json(['ok' => true, 'new' => $new]);
         } catch (\Throwable $e) {
             return response()->json(['ok' => false, 'error' => $e->getMessage()], 500);
@@ -42,7 +42,7 @@ class NotificationsApi extends Controller
     public function markAllSeen()
     {
         try {
-            Notifications_model::where('is_read', 0)->update(['is_read' => 1]);
+            Notifications_model::where('status', 'new')->update(['status' => 'seen', 'seen_at' => now()]);
             return response()->json(['ok' => true]);
         } catch (\Throwable $e) {
             return response()->json(['ok' => false, 'error' => $e->getMessage()], 500);
